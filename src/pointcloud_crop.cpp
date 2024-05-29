@@ -52,7 +52,10 @@ void pointCloudCallback(const sensor_msgs::PointCloud2ConstPtr& point)
   pass_filter.filter(*filtered_cloud_x);
 
   if (filtered_cloud_x->empty())
+  {
+    ROS_ERROR("Pointcloud Out of Range X");
     return;
+  }
 
   pcl::PassThrough<pcl::PointXYZ> pass_filter2;
   pass_filter2.setInputCloud(filtered_cloud_x);
@@ -64,7 +67,10 @@ void pointCloudCallback(const sensor_msgs::PointCloud2ConstPtr& point)
   pass_filter2.filter(*filtered_cloud_y);
 
   if (filtered_cloud_y->empty())
+  {
+    ROS_ERROR("Pointcloud Out of Range Y");
     return;
+  }
 
   pcl::PassThrough<pcl::PointXYZ> pass_filter3;
   pass_filter3.setInputCloud(filtered_cloud_y);
@@ -77,6 +83,7 @@ void pointCloudCallback(const sensor_msgs::PointCloud2ConstPtr& point)
 
   if (filtered_cloud_1->empty())
   {
+    ROS_ERROR("Pointcloud Out of Range Z");
     return;
   }
 
