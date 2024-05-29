@@ -6,9 +6,12 @@ int main(int argc, char** argv)
   ros::NodeHandle nh;
   ROS_INFO("Starting Pointcloud Crop Node");
 
-  std::string topic;
-  ros::param::get("/pointcloud_crop_node/topic", topic);
-  ROS_INFO("Subscribing Topic : %s", topic.c_str());
+  std::string sub_topic;
+  ros::param::get("/pointcloud_crop_node/sub_topic", sub_topic);
+  ROS_INFO("Subscribing Topic : %s", sub_topic.c_str());
+  std::string pub_topic;
+  ros::param::get("/pointcloud_crop_node/pub_topic", pub_topic);
+  ROS_INFO("Publishing Topic : %s", pub_topic.c_str());
   ros::param::get("/pointcloud_crop_node/x_min", xyz[0]);
   ROS_INFO("X MIN : %f", xyz[0]);
   ros::param::get("/pointcloud_crop_node/x_max", xyz[1]);
@@ -22,7 +25,7 @@ int main(int argc, char** argv)
   ros::param::get("/pointcloud_crop_node/z_max", xyz[5]);
   ROS_INFO("Z MAX : %f", xyz[5]);
 
-  point_sub = nh.subscribe<sensor_msgs::PointCloud2>("topic", 1, pointCloudCallback);
+  point_sub = nh.subscribe<sensor_msgs::PointCloud2>(sub_topic, 1, pointCloudCallback);
   point_pub = nh.advertise<sensor_msgs::PointCloud2>("cropped_point", 1);
 
   ros::Rate loop_rate(100);
