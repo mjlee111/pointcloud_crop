@@ -1,0 +1,14 @@
+<launch>
+  <node pkg="pointcloud_crop" type="pointcloud_crop_node" name="pointcloud_crop_node" output="screen">
+    <param name="topic" type="string" value="/pointcloud" />
+
+    <param name="x_min" value="-1" />
+    <param name="x_max" value="1" />
+
+    <param name="y_min" value="-1" />
+    <param name="y_max" value="1" />
+
+    <param name="z_min" value="-1"/>
+    <param name="z_max" value="1"/>
+  </node>
+</launch>
