@@ -50,22 +50,30 @@ The package supports the following parameters:
 - **z_max**: The maximum z-range for cropping.
   - Default: `1.0` [m]
 
+- **marker**: Set marker for range visualization.
+  - Default: `false`
+
 
 ### Example launch file (crop.launch)
 Below is an example of a crop.launch file, which you can use to run the package with custom parameters:
 
 ``` xml
 <launch>
-    <node name="pointcloud_crop" pkg="pointcloud_crop" type="pointcloud_crop_node" output="screen">
-        <param name="sub_topic" value="/pointcloud" />
-        <param name="pub_topic" value="/pointcloud_crop" />
-        <param name="x_min" value="-1.0" />
-        <param name="x_max" value="1.0" />
-        <param name="y_min" value="-1.0" />
-        <param name="y_max" value="1.0" />
-        <param name="z_min" value="-1.0" />
-        <param name="z_max" value="1.0" />
-    </node>
+  <node pkg="pointcloud_crop" type="pointcloud_crop_node" name="pointcloud_crop_node" output="screen">
+    <param name="sub_topic" type="string" value="/point_cloud" />
+    <param name="pub_topic" type="string" value="/point_cloud_crop" />
+
+    <param name="x_min" value="-1" />
+    <param name="x_max" value="1" />
+
+    <param name="y_min" value="-1" />
+    <param name="y_max" value="1" />
+
+    <param name="z_min" value="-1"/>
+    <param name="z_max" value="1"/>
+
+    <param name="marker" type="bool" value="false" />
+  </node>
 </launch>
 ``` 
 This package facilitates the cropping of point cloud data within a specified range, making it easier to focus on areas of interest in your point cloud datasets. Adjust the parameters as needed to suit your specific application requirements.
